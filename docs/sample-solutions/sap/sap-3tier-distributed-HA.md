@@ -27,7 +27,7 @@ This solution covers the provision of a dual SAP system databases in a highly av
 
 1. Customers from the Presentation Tier use their SAP gui, or other user interfaces (Internet Explorer, Excel or other web application) on premise to access the Azure based SAP system.
 2. Connectivity is provided through the use of the established Express Route. The Express Route is terminated in Azure at the Express Route Gateway. Network traffic routes through the Express Route gateway to the Gateway Subnet and from the gateway subnet to the Application Tier Spoke subnet and via a Network Security Gateway to the SAP application virtual machine.
-3. The indentity management servers provide authenication services to the solution.
+3. The identity management servers provide authentication services to the solution.
 4. The Jump Box provides local management capabilities to the solution.
 
 ### Components
@@ -94,19 +94,32 @@ We have provided four sample cost profiles based on amount of traffic you expect
 
 |Size|SAPs|DB VM Type|DB Storage|(A)SCS VM|(A)SCS Storage|App VM Type|App Storage|Azure Pricing Calculator|
 |----|----|-------|-------|-----|---|---|--------|---------------|
-|Small|30000|2x D13s_v3|4xP20, 1xP20|2x DS11_v2|1x P10|DS13_v3|1x P10|[Small](https://azure.com/e/7674e0ab4eb34dde855caf61e51d3337)|
-|Medium|70000|2x D14s_v2|6xP20, 1xP20|2x DS11_v2|1x P10|4x DS13_v3|1x P10|[Medium](https://azure.com/e/8b14bcae8a7b46ad92684ccc1d41b454)|
-Large|180000|2x E32s_v3|5xP30, 1xP20|2x DS11_v2|1x P10|6x DS14_v3|1x P10|[Large](https://azure.com/e/c3debccdc1b7481085fa28115059d446)|
-Extra Large|250000|2x M64s|6xP30, 1xP30|2x DS11_v2|1x P10|10x DS14_v3|1x P10|[Extra Large](https://azure.com/e/ec6b516a8dd04b52b5aef53960bbd33f)|
+|Small|30000|2x DS13_v2|4xP20, 1xP20|2x DS11_v2|1x P10|DS13_v2|1x P10|[Small](https://azure.com/e/7674e0ab4eb34dde855caf61e51d3337)|
+|Medium|70000|2x DS14_v2|6xP20, 1xP20|2x DS11_v2|1x P10|4x DS13_v2|1x P10|[Medium](https://azure.com/e/8b14bcae8a7b46ad92684ccc1d41b454)|
+Large|180000|2x E32s_v3|5xP30, 1xP20|2x DS11_v2|1x P10|6x DS14_v2|1x P10|[Large](https://azure.com/e/c3debccdc1b7481085fa28115059d446)|
+Extra Large|250000|2x M64s|6xP30, 1xP30|2x DS11_v2|1x P10|10x DS14_v2|1x P10|[Extra Large](https://azure.com/e/ec6b516a8dd04b52b5aef53960bbd33f)|
 
 
-* [Small](https://azure.com/e/7674e0ab4eb34dde855caf61e51d3337) : A small system consists of two VM type DS13_v3 for the db servers with 8x vCPUs, 56GB RAM and 112GB temp storage, additionally five 512GB premium storage disks. Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. VM type DS13_v3 for the SAP application server with 8x vCPUs, 56GB RAM and 400GB temp storage, additionally one 128GB premium storage disk.
+* [Small](https://azure.com/e/7674e0ab4eb34dde855caf61e51d3337) : A small system consists of two VM type DS13_v2 for the db servers with 8x vCPUs, 56GB RAM and 112GB temp storage, additionally five 512GB premium storage disks. Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. VM type DS13_v2 for the SAP application server with 8x vCPUs, 56GB RAM and 400GB temp storage, additionally one 128GB premium storage disk.
 
-* [Medium](https://azure.com/e/8b14bcae8a7b46ad92684ccc1d41b454): A medium system consists of two VM type DS14_v3 for the db server with 16x vCPUs, 112GB RAM and 800GB temp storage, additionally seven 512GB premium storage disks. Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. Four VM type DS13_v3 for the SAP application servers with 8x vCPUs, 56GB RAM and 400GB temp storage, additionally one 128GB premium storage disk.
 
-* [Large](https://azure.com/e/c3debccdc1b7481085fa28115059d446): A large system consists of two VM type E32s_v3 for the db server with 32x vCPUs, 256GB RAM and 800GB temp storage, additionally three 512GB and one 128GB premium storage disks.Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. Six VM type DS14_v3 for the SAP application servers with 16x vCPUs, 112GB RAM and 224GB temp storage, additionally six 128GB premium storage disk.
+* [Medium](https://azure.com/e/8b14bcae8a7b46ad92684ccc1d41b454): A medium system consists of two VM type DS14_v2 for the db server with 16x vCPUs, 112GB RAM and 800GB temp storage, additionally seven 512GB premium storage disks. Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. Four VM type DS13_v2 for the SAP application servers with 8x vCPUs, 56GB RAM and 400GB temp storage, additionally one 128GB premium storage disk.
 
-* [Extra Large](https://azure.com/e/ec6b516a8dd04b52b5aef53960bbd33f): An extra large system consists of two VM type M64s for the db server with 64x vCPUs, 1024GB RAM and 2000GB temp storage, additionally seven 1024GB premium storage disks. Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. Ten VM type DS14_v3 for the SAP application servers with 16x vCPUs, 112GB RAM and 224GB temp storage, additionally ten 128GB premium storage disk.
+* [Large](https://azure.com/e/c3debccdc1b7481085fa28115059d446): A large system consists of two VM type E32s_v3 for the db server with 32x vCPUs, 256GB RAM and 800GB temp storage, additionally three 512GB and one 128GB premium storage disks.Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. Six VM type DS14_v2 for the SAP application servers with 16x vCPUs, 112GB RAM and 224GB temp storage, additionally six 128GB premium storage disk.
+
+* [Extra Large](https://azure.com/e/ec6b516a8dd04b52b5aef53960bbd33f): An extra large system consists of two VM type M64s for the db server with 64x vCPUs, 1024GB RAM and 2000GB temp storage, additionally seven 1024GB premium storage disks. Two SAP Central Instance servers using two DS11_v2 VM types with 2x vCPUs 14GB RAM and 28GB temp storage. Ten VM type DS14_v2 for the SAP application servers with 16x vCPUs, 112GB RAM and 224GB temp storage, additionally ten 128GB premium storage disk.
+
+## Deployment Example
+To deploy a sample solution similar to the solution above, please use the deploy button 
+
+<a
+href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2FAzure%2Ffta-wip%2Fblob%2Fmaster%2FSAP%2Ftemplates%2Fsap-3tier-distributed%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
+## Alternative deployment examples
+For further deployment examples, please refer to the many github samples templates. [Github QuickStart Templates] https://github.com/Azure/azure-quickstart-templates
+
 
 ## Related Resources
 
